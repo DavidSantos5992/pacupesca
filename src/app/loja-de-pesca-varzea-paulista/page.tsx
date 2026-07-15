@@ -506,28 +506,6 @@ export default function BrandLandingPage() {
           </div>
         </section>
 
-        <Reveal as="section" className="section-shell -mt-10 relative z-10">
-          <div className="grid gap-px overflow-hidden rounded-card border border-white/10 bg-white/10 md:grid-cols-4">
-            {features.map((item) => (
-              <article
-                key={item.title}
-                className="min-h-40 bg-graphite/95 p-5"
-              >
-                <item.icon
-                  aria-hidden="true"
-                  className="mb-4 text-lime"
-                  size={30}
-                  strokeWidth={2.2}
-                />
-                <h2 className="text-base font-black uppercase text-paper">
-                  {item.title}
-                </h2>
-                <p className="mt-2 text-sm leading-6 text-smoke">{item.text}</p>
-              </article>
-            ))}
-          </div>
-        </Reveal>
-
         <Reveal id="produtos" as="section" className="section-shell py-20">
           <SectionHeading
             eyebrow="Produtos em destaque"
@@ -569,6 +547,78 @@ export default function BrandLandingPage() {
             ))}
           </div>
         </Reveal>
+
+        <section className="surface-line border-y border-white/10 bg-graphite-soft py-20">
+          <Reveal className="section-shell">
+            <div className="mb-10 flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+              <div className="max-w-3xl">
+                <p className="mb-3 inline-flex rounded-card border border-water/35 bg-water/10 px-3 py-1 text-xs font-black uppercase tracking-wide text-water">
+                  Catálogo Pacu Pesca
+                </p>
+                <h2 className="font-display text-4xl font-bold uppercase leading-tight text-paper md:text-5xl">
+                  Encontre tudo o que precisa pra sua pescaria aqui!
+                </h2>
+                <p className="mt-4 text-base leading-8 text-smoke md:text-lg">
+                  Navegue pelas categorias e marcas mais procuradas para montar
+                  sua tralha com rapidez.
+                </p>
+              </div>
+              <PrimaryLink href={catalogUrl} variant="dark">
+                Ver catálogo completo
+              </PrimaryLink>
+            </div>
+
+            <ProductFinderCarousel />
+
+            <div className="mt-12">
+              <BrandCarousel />
+            </div>
+          </Reveal>
+        </section>
+
+        <section
+          id="categorias"
+          className="surface-line border-y border-white/10 bg-graphite/55 py-20"
+        >
+          <Reveal className="section-shell">
+            <SectionHeading
+              eyebrow="Categorias da loja"
+              title="Tudo organizado para encontrar o que combina com sua pescaria"
+              text="A vitrine apresenta as principais frentes da Pacu Pesca para facilitar a escolha de quem busca desempenho, reposição ou aquele item de apoio que não pode faltar."
+            />
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {categories.map((category) => (
+                <a
+                  key={category.name}
+                  href={category.href}
+                  className="focus-ring group overflow-hidden rounded-card border border-white/10 bg-charcoal transition duration-300 hover:-translate-y-1 hover:border-lime/60"
+                >
+                  <div className="relative aspect-[4/3] overflow-hidden bg-charcoal">
+                    <Image
+                      src={category.image}
+                      alt={`${category.name} na Pacu Pesca`}
+                      fill
+                      sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                      className="object-cover transition duration-500 group-hover:scale-105"
+                    />
+                  </div>
+                  <div className="min-h-40 p-5">
+                    <h3 className="font-display text-2xl font-bold uppercase text-paper">
+                      {category.name}
+                    </h3>
+                    <p className="mt-3 text-sm leading-7 text-smoke">
+                      {category.description}
+                    </p>
+                    <span className="mt-5 inline-flex items-center gap-2 text-sm font-black uppercase text-lime">
+                      Explorar categoria
+                      <ArrowRight aria-hidden="true" size={16} />
+                    </span>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </Reveal>
+        </section>
 
         <Reveal as="section" className="section-shell pb-20">
           <div className="relative isolate overflow-hidden rounded-[24px] border border-white/10 bg-[#2e2e2d] px-6 py-8 shadow-[0_24px_70px_rgba(0,0,0,0.34)] md:px-12 md:py-10">
@@ -615,33 +665,27 @@ export default function BrandLandingPage() {
           </div>
         </Reveal>
 
-        <section className="surface-line border-y border-white/10 bg-graphite-soft py-20">
-          <Reveal className="section-shell">
-            <div className="mb-10 flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
-              <div className="max-w-3xl">
-                <p className="mb-3 inline-flex rounded-card border border-water/35 bg-water/10 px-3 py-1 text-xs font-black uppercase tracking-wide text-water">
-                  Catálogo Pacu Pesca
-                </p>
-                <h2 className="font-display text-4xl font-bold uppercase leading-tight text-paper md:text-5xl">
-                  Encontre tudo o que precisa pra sua pescaria aqui!
+        <Reveal as="section" className="section-shell -mt-10 relative z-10">
+          <div className="grid gap-px overflow-hidden rounded-card border border-white/10 bg-white/10 md:grid-cols-4">
+            {features.map((item) => (
+              <article
+                key={item.title}
+                className="min-h-40 bg-graphite/95 p-5"
+              >
+                <item.icon
+                  aria-hidden="true"
+                  className="mb-4 text-lime"
+                  size={30}
+                  strokeWidth={2.2}
+                />
+                <h2 className="text-base font-black uppercase text-paper">
+                  {item.title}
                 </h2>
-                <p className="mt-4 text-base leading-8 text-smoke md:text-lg">
-                  Navegue pelas categorias e marcas mais procuradas para montar
-                  sua tralha com rapidez.
-                </p>
-              </div>
-              <PrimaryLink href={catalogUrl} variant="dark">
-                Ver catálogo completo
-              </PrimaryLink>
-            </div>
-
-            <ProductFinderCarousel />
-
-            <div className="mt-12">
-              <BrandCarousel />
-            </div>
-          </Reveal>
-        </section>
+                <p className="mt-2 text-sm leading-6 text-smoke">{item.text}</p>
+              </article>
+            ))}
+          </div>
+        </Reveal>
 
         <Reveal id="marca" as="section" className="section-shell py-20">
           <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
@@ -685,50 +729,6 @@ export default function BrandLandingPage() {
             </div>
           </div>
         </Reveal>
-
-        <section
-          id="categorias"
-          className="surface-line border-y border-white/10 bg-graphite/55 py-20"
-        >
-          <Reveal className="section-shell">
-            <SectionHeading
-              eyebrow="Categorias da loja"
-              title="Tudo organizado para encontrar o que combina com sua pescaria"
-              text="A vitrine apresenta as principais frentes da Pacu Pesca para facilitar a escolha de quem busca desempenho, reposição ou aquele item de apoio que não pode faltar."
-            />
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {categories.map((category) => (
-                <a
-                  key={category.name}
-                  href={category.href}
-                  className="focus-ring group overflow-hidden rounded-card border border-white/10 bg-charcoal transition duration-300 hover:-translate-y-1 hover:border-lime/60"
-                >
-                  <div className="relative aspect-[4/3] overflow-hidden bg-charcoal">
-                    <Image
-                      src={category.image}
-                      alt={`${category.name} na Pacu Pesca`}
-                      fill
-                      sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                      className="object-cover transition duration-500 group-hover:scale-105"
-                    />
-                  </div>
-                  <div className="min-h-40 p-5">
-                    <h3 className="font-display text-2xl font-bold uppercase text-paper">
-                      {category.name}
-                    </h3>
-                    <p className="mt-3 text-sm leading-7 text-smoke">
-                      {category.description}
-                    </p>
-                    <span className="mt-5 inline-flex items-center gap-2 text-sm font-black uppercase text-lime">
-                      Explorar categoria
-                      <ArrowRight aria-hidden="true" size={16} />
-                    </span>
-                  </div>
-                </a>
-              ))}
-            </div>
-          </Reveal>
-        </section>
 
         <section className="border-y border-white/10 bg-graphite/70 py-20">
           <Reveal className="section-shell">
