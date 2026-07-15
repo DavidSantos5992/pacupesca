@@ -123,7 +123,7 @@ type HeaderCategory = {
 const headerCategories: HeaderCategory[] = [
   {
     icon: Fish,
-    label: '"Kits de Pesca"',
+    label: 'Kits de Pesca',
     href: `${catalogUrl}#categoria-kits`,
   },
   {
@@ -170,11 +170,6 @@ const headerCategories: HeaderCategory[] = [
     icon: Tent,
     label: "Camping",
     href: `${catalogUrl}#categoria-camping`,
-  },
-  {
-    icon: Menu,
-    label: "VER MAIS",
-    href: "#categorias",
   },
 ];
 
@@ -417,13 +412,15 @@ export default function BrandLandingPage() {
       <header className="absolute inset-x-0 top-0 z-30 border-b border-white/10 bg-[#2f302f] shadow-[0_12px_34px_rgba(0,0,0,0.35)]">
         <nav
           aria-label="Categorias principais"
-          className="mx-auto flex min-h-[70px] max-w-[1360px] items-stretch gap-2 overflow-x-auto px-3 py-2 md:justify-center md:overflow-visible"
+          className="mx-auto flex min-h-[70px] max-w-[1360px] items-stretch gap-1 overflow-visible px-2 py-2 md:justify-center md:gap-2 md:px-3"
         >
           {headerCategories.map((category) => (
             <a
               key={category.label}
               href={category.href}
-              className="focus-ring group flex min-w-24 flex-col items-center justify-center gap-1 rounded-card px-3 py-1 text-center text-[11px] font-extrabold leading-tight text-white transition duration-300 hover:bg-white/8 hover:text-lime md:min-w-28"
+              className={`focus-ring group flex min-w-0 flex-1 flex-col items-center justify-center gap-1 rounded-card px-1 py-1 text-center text-[11px] font-extrabold leading-tight text-white transition duration-300 hover:bg-white/8 hover:text-lime md:min-w-28 md:flex-none md:px-3 ${
+                headerCategories.indexOf(category) >= 3 ? "hidden md:flex" : ""
+              }`}
             >
               <category.icon
                 aria-hidden="true"
@@ -434,6 +431,34 @@ export default function BrandLandingPage() {
               <span>{category.label}</span>
             </a>
           ))}
+          <details className="relative flex min-w-0 flex-1 md:hidden">
+            <summary className="focus-ring group flex min-w-0 flex-1 cursor-pointer list-none flex-col items-center justify-center gap-1 rounded-card px-1 py-1 text-center text-[11px] font-extrabold leading-tight text-white transition duration-300 hover:bg-white/8 hover:text-lime">
+              <Menu
+                aria-hidden="true"
+                size={27}
+                strokeWidth={2.3}
+                className="text-white transition duration-300 group-hover:text-lime"
+              />
+              <span>VER MAIS</span>
+            </summary>
+            <div className="absolute right-0 top-full z-40 mt-2 w-64 rounded-card border border-white/10 bg-[#2f302f] p-2 shadow-[0_18px_44px_rgba(0,0,0,0.45)]">
+              {headerCategories.slice(3).map((category) => (
+                <a
+                  key={category.label}
+                  href={category.href}
+                  className="focus-ring group flex items-center gap-3 rounded-card px-3 py-3 text-sm font-extrabold text-white transition duration-300 hover:bg-white/8 hover:text-lime"
+                >
+                  <category.icon
+                    aria-hidden="true"
+                    size={21}
+                    strokeWidth={2.3}
+                    className="text-white transition duration-300 group-hover:text-lime"
+                  />
+                  <span>{category.label}</span>
+                </a>
+              ))}
+            </div>
+          </details>
         </nav>
       </header>
 
