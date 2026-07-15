@@ -534,7 +534,7 @@ export default function BrandLandingPage() {
             title="Seleção para inspirar a próxima montagem"
             text="Uma curadoria visual de produtos da Pacu Pesca, sem preços, pronta para receber os links reais do e-commerce quando eles forem definidos."
           />
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
             {products.map((product) => (
               <a
                 key={product.name}
