@@ -665,28 +665,6 @@ export default function BrandLandingPage() {
           </div>
         </Reveal>
 
-        <Reveal as="section" className="section-shell -mt-10 relative z-10">
-          <div className="grid gap-px overflow-hidden rounded-card border border-white/10 bg-white/10 md:grid-cols-4">
-            {features.map((item) => (
-              <article
-                key={item.title}
-                className="min-h-40 bg-graphite/95 p-5"
-              >
-                <item.icon
-                  aria-hidden="true"
-                  className="mb-4 text-lime"
-                  size={30}
-                  strokeWidth={2.2}
-                />
-                <h2 className="text-base font-black uppercase text-paper">
-                  {item.title}
-                </h2>
-                <p className="mt-2 text-sm leading-6 text-smoke">{item.text}</p>
-              </article>
-            ))}
-          </div>
-        </Reveal>
-
         <Reveal id="marca" as="section" className="section-shell py-20">
           <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
             <div>
@@ -873,6 +851,28 @@ export default function BrandLandingPage() {
             </address>
           </Reveal>
         </section>
+
+        <Reveal as="section" className="section-shell -mt-10 relative z-10 pb-20">
+          <div className="grid gap-px overflow-hidden rounded-card border border-white/10 bg-white/10 md:grid-cols-4">
+            {features.map((item) => (
+              <article
+                key={item.title}
+                className="min-h-40 bg-graphite/95 p-5"
+              >
+                <item.icon
+                  aria-hidden="true"
+                  className="mb-4 text-lime"
+                  size={30}
+                  strokeWidth={2.2}
+                />
+                <h2 className="text-base font-black uppercase text-paper">
+                  {item.title}
+                </h2>
+                <p className="mt-2 text-sm leading-6 text-smoke">{item.text}</p>
+              </article>
+            ))}
+          </div>
+        </Reveal>
       </main>
 
       <footer className="border-t border-white/10 bg-charcoal py-8">
