@@ -182,7 +182,7 @@ export function HeroCarousel() {
     <section
       aria-label="Destaques Pacu Pesca"
       aria-roledescription="carousel"
-      className="relative isolate min-h-[640px] touch-pan-y overflow-hidden bg-charcoal pt-48 md:min-h-[680px] md:pt-28"
+      className="relative isolate min-h-[700px] touch-pan-y overflow-hidden bg-charcoal pt-20 md:min-h-[680px] md:pt-28"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
       onFocus={() => setIsPaused(true)}
@@ -214,7 +214,7 @@ export function HeroCarousel() {
         </div>
       ))}
 
-      <div className="section-shell relative flex min-h-[492px] items-center py-12 md:min-h-[552px] md:py-16">
+      <div className="section-shell relative flex min-h-[620px] items-center py-8 md:min-h-[552px] md:py-16">
         <div className="grid w-full items-center gap-8 lg:grid-cols-[0.92fr_1.08fr] lg:gap-4">
           <div className="relative z-10 max-w-2xl">
             <div className="mb-5 flex flex-wrap items-center gap-3">
@@ -253,9 +253,9 @@ export function HeroCarousel() {
             </p>
           </div>
 
-          <div className="relative mx-auto h-[320px] w-full max-w-[620px] sm:h-[390px] lg:h-[500px]">
+          <div className="relative mx-auto h-[390px] w-full max-w-[620px] sm:h-[390px] lg:h-[500px]">
             <div className={`absolute left-[12%] top-[11%] h-56 w-56 rounded-full blur-3xl sm:h-72 sm:w-72 ${accent.glow}`} />
-            <div className="absolute left-[7%] top-[12%] h-[76%] w-[64%] rotate-[-5deg] overflow-hidden rounded-[28px] border border-white/20 bg-white p-3 shadow-[0_28px_70px_rgba(0,0,0,0.38)] sm:p-5">
+            <div className="absolute left-[4%] top-[5%] h-[90%] w-[92%] overflow-hidden rounded-[24px] border border-white/20 bg-white p-3 shadow-[0_28px_70px_rgba(0,0,0,0.38)] sm:left-[7%] sm:top-[12%] sm:h-[76%] sm:w-[64%] sm:rotate-[-5deg] sm:rounded-[28px] sm:p-5">
               <Image
                 key={`${active}-main`}
                 src={slide.image}
@@ -269,7 +269,7 @@ export function HeroCarousel() {
                 Em destaque
               </span>
             </div>
-            <div className="absolute right-[3%] top-[3%] h-[39%] w-[34%] rotate-[7deg] overflow-hidden rounded-2xl border border-white/20 bg-white p-2 shadow-[0_18px_42px_rgba(0,0,0,0.3)] sm:p-3">
+            <div className="absolute right-[3%] top-[3%] hidden h-[39%] w-[34%] rotate-[7deg] overflow-hidden rounded-2xl border border-white/20 bg-white p-2 shadow-[0_18px_42px_rgba(0,0,0,0.3)] sm:block sm:p-3">
               <Image
                 key={`${active}-secondary`}
                 src={slide.secondaryImage}
@@ -279,7 +279,7 @@ export function HeroCarousel() {
                 className="object-contain p-2 sm:p-3"
               />
             </div>
-            <div className="absolute bottom-[4%] right-[10%] h-[36%] w-[31%] rotate-[-6deg] overflow-hidden rounded-2xl border border-white/20 bg-white p-2 shadow-[0_18px_42px_rgba(0,0,0,0.3)] sm:p-3">
+            <div className="absolute bottom-[4%] right-[10%] hidden h-[36%] w-[31%] rotate-[-6deg] overflow-hidden rounded-2xl border border-white/20 bg-white p-2 shadow-[0_18px_42px_rgba(0,0,0,0.3)] sm:block sm:p-3">
               <Image
                 key={`${active}-tertiary`}
                 src={slide.tertiaryImage}
@@ -298,7 +298,7 @@ export function HeroCarousel() {
           type="button"
           aria-label="Destaque anterior"
           onClick={goPrevious}
-          className="focus-ring pointer-events-auto grid h-10 w-10 place-items-center rounded-full border border-white/15 bg-charcoal/60 text-white transition hover:border-white/35 hover:bg-white/10"
+          className="focus-ring pointer-events-auto hidden h-10 w-10 place-items-center rounded-full border border-white/15 bg-charcoal/60 text-white transition hover:border-white/35 hover:bg-white/10 md:grid"
         >
           <ChevronLeft aria-hidden="true" size={19} />
         </button>
@@ -306,7 +306,7 @@ export function HeroCarousel() {
           type="button"
           aria-label="Próximo destaque"
           onClick={goNext}
-          className="focus-ring pointer-events-auto grid h-10 w-10 place-items-center rounded-full border border-white/15 bg-charcoal/60 text-white transition hover:border-white/35 hover:bg-white/10"
+          className="focus-ring pointer-events-auto hidden h-10 w-10 place-items-center rounded-full border border-white/15 bg-charcoal/60 text-white transition hover:border-white/35 hover:bg-white/10 md:grid"
         >
           <ChevronRight aria-hidden="true" size={19} />
         </button>
@@ -327,11 +327,11 @@ export function HeroCarousel() {
                 goTo(index);
               }}
               className={`focus-ring h-2 rounded-full transition-all duration-300 ${
-                active === index ? `w-10 ${accent.dot}` : "w-2 bg-white/35 hover:bg-white/65"
+                active === index ? `w-2 md:w-10 ${accent.dot}` : "w-2 bg-white/35 hover:bg-white/65"
               }`}
             />
           ))}
-          <span className="ml-2 text-xs font-black uppercase tracking-wider text-white/55">
+          <span className="ml-2 hidden text-xs font-black uppercase tracking-wider text-white/55 md:inline">
             0{active + 1} / 0{slides.length}
           </span>
         </div>

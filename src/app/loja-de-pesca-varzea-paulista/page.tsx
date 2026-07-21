@@ -13,19 +13,24 @@ import {
   MessageCircle,
   Package,
   PawPrint,
+  Search,
+  ShoppingCart,
   Phone,
   ShieldCheck,
   Shirt,
   Sparkles,
   Tent,
+  UserRound,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { BrandCarousel } from "./brand-carousel";
 import { HeroCarousel } from "./hero-carousel";
 import { ProductFinderCarousel } from "./product-finder-carousel";
 import { Reveal } from "./reveal";
+import { ReviewsSection } from "./reviews-section";
+import { getGoogleReviews } from "@/lib/google-reviews";
 
-export const revalidate = 86400;
+export const revalidate = 3600;
 
 const siteUrl = "https://pacupesca.com";
 const landingPath = "/loja-de-pesca-varzea-paulista";
@@ -383,7 +388,9 @@ function SectionHeading({
   );
 }
 
-export default function BrandLandingPage() {
+export default async function BrandLandingPage() {
+  const reviews = await getGoogleReviews();
+
   return (
     <>
       <script
@@ -393,21 +400,35 @@ export default function BrandLandingPage() {
         }}
       />
 
-      <div className="fixed inset-x-0 top-0 z-40 flex h-20 items-center justify-center overflow-hidden bg-[#2f302f] md:hidden">
-        <Image
-          src="/images/logo/pacu-pesca-logo.png"
-          width={1080}
-          height={1350}
-          priority
-          alt="Pacu Pesca"
-          className="h-24 w-auto object-contain"
-        />
-      </div>
-
-      <header className="fixed inset-x-0 top-20 z-30 border-b border-white/10 bg-[#2f302f] shadow-[0_12px_34px_rgba(0,0,0,0.35)] md:top-0">
+      <header className="fixed inset-x-0 top-0 z-30 border-b border-white/10 bg-[#2f302f] shadow-[0_12px_34px_rgba(0,0,0,0.35)]">
+        <div className="flex h-20 items-center justify-between bg-[#2d86df] px-4 md:hidden">
+          <a href="#categorias" aria-label="Abrir menu de categorias" className="focus-ring grid h-12 w-12 place-items-center text-white">
+            <Menu aria-hidden="true" size={30} strokeWidth={2.4} />
+          </a>
+          <a href="#produtos" aria-label="Buscar produtos" className="focus-ring grid h-12 w-12 place-items-center text-white">
+            <Search aria-hidden="true" size={29} strokeWidth={2.3} />
+          </a>
+          <a href="#inicio" aria-label="Ir para o início" className="focus-ring grid h-16 w-24 place-items-center border border-white/45 px-2">
+            <Image
+              src="/images/logo/pacu-pesca-logo.png"
+              width={1080}
+              height={1350}
+              priority
+              alt="Pacu Pesca"
+              className="h-16 w-auto object-contain"
+            />
+          </a>
+          <a href="#contato" aria-label="Acessar contato" className="focus-ring grid h-12 w-12 place-items-center text-white">
+            <UserRound aria-hidden="true" size={30} strokeWidth={2.2} />
+          </a>
+          <a href="https://pacupesca.com/produtos/" aria-label="Abrir carrinho" className="focus-ring relative grid h-12 w-12 place-items-center text-white">
+            <ShoppingCart aria-hidden="true" size={31} strokeWidth={2.2} />
+            <span className="absolute right-0 top-0 grid h-6 w-6 place-items-center rounded-full bg-lime text-xs font-black text-charcoal">0</span>
+          </a>
+        </div>
         <nav
           aria-label="Categorias principais"
-          className="mx-auto flex min-h-[70px] max-w-[1360px] items-stretch gap-1 overflow-visible px-2 py-2 md:justify-center md:gap-2 md:px-3"
+          className="mx-auto hidden min-h-[70px] max-w-[1360px] items-stretch gap-1 overflow-visible px-2 py-2 md:flex md:justify-center md:gap-2 md:px-3"
         >
           {headerCategories.map((category) => (
             <Fragment key={category.label}>
@@ -478,7 +499,7 @@ export default function BrandLandingPage() {
         <span className="hidden sm:inline">WhatsApp</span>
       </a>
 
-      <main>
+      <main id="inicio">
         <HeroCarousel />
 
         <Reveal id="produtos" as="section" className="section-shell py-20">
@@ -711,6 +732,8 @@ export default function BrandLandingPage() {
           </Reveal>
         </section>
 
+        <ReviewsSection {...reviews} />
+
         <Reveal as="section" className="section-shell py-20">
           <div className="relative overflow-hidden rounded-card border border-white/10 bg-charcoal p-8 md:p-10">
             <Image
@@ -762,56 +785,67 @@ export default function BrandLandingPage() {
               </div>
             </div>
             <address className="not-italic">
-              <div className="rounded-card border border-white/10 bg-graphite p-6">
-                <h3 className="font-display text-3xl font-bold uppercase text-paper">
-                  Pacu Pesca
-                </h3>
-                <div className="mt-5 grid gap-4 text-sm leading-7 text-smoke">
-                  <p className="flex gap-3">
-                    <MapPin
-                      aria-hidden="true"
-                      className="mt-1 shrink-0 text-lime"
-                      size={20}
-                    />
-                    <span>{address}</span>
-                  </p>
-                  <p className="flex gap-3">
-                    <Phone
-                      aria-hidden="true"
-                      className="mt-1 shrink-0 text-lime"
-                      size={20}
-                    />
-                    <a className="focus-ring hover:text-lime" href={whatsappUrl}>
-                      (11) 93397-3588
-                    </a>
-                  </p>
-                  <p className="flex gap-3">
-                    <MessageCircle
-                      aria-hidden="true"
-                      className="mt-1 shrink-0 text-lime"
-                      size={20}
-                    />
-                    <a className="focus-ring hover:text-lime" href={whatsappUrl}>
-                      WhatsApp da loja
-                    </a>
-                  </p>
+              <div className="overflow-hidden rounded-card border border-white/10 bg-graphite">
+                <div className="relative aspect-[4/3]">
+                  <Image
+                    src="/images/banners/frente-loja-pacu-pesca-fachada.png"
+                    alt="Fachada da loja Pacu Pesca em Várzea Paulista"
+                    fill
+                    sizes="(min-width: 1024px) 42vw, 100vw"
+                    className="object-cover"
+                  />
                 </div>
-                <div className="mt-6 flex flex-wrap gap-4 text-sm font-bold text-paper">
-                  <a
-                    className="focus-ring hover:text-lime"
-                    href="https://www.instagram.com/pacu_pesca/"
-                  >
-                    Instagram
-                  </a>
-                  <a
-                    className="focus-ring hover:text-lime"
-                    href="https://www.facebook.com/PACUPESCAVARZEAPAULISTA/"
-                  >
-                    Facebook
-                  </a>
-                  <a className="focus-ring hover:text-lime" href={catalogUrl}>
-                    Catálogo
-                  </a>
+                <div className="p-6">
+                  <h3 className="font-display text-3xl font-bold uppercase text-paper">
+                    Pacu Pesca
+                  </h3>
+                  <div className="mt-5 grid gap-4 text-sm leading-7 text-smoke">
+                    <p className="flex gap-3">
+                      <MapPin
+                        aria-hidden="true"
+                        className="mt-1 shrink-0 text-lime"
+                        size={20}
+                      />
+                      <span>{address}</span>
+                    </p>
+                    <p className="flex gap-3">
+                      <Phone
+                        aria-hidden="true"
+                        className="mt-1 shrink-0 text-lime"
+                        size={20}
+                      />
+                      <a className="focus-ring hover:text-lime" href={whatsappUrl}>
+                        (11) 93397-3588
+                      </a>
+                    </p>
+                    <p className="flex gap-3">
+                      <MessageCircle
+                        aria-hidden="true"
+                        className="mt-1 shrink-0 text-lime"
+                        size={20}
+                      />
+                      <a className="focus-ring hover:text-lime" href={whatsappUrl}>
+                        WhatsApp da loja
+                      </a>
+                    </p>
+                  </div>
+                  <div className="mt-6 flex flex-wrap gap-4 text-sm font-bold text-paper">
+                    <a
+                      className="focus-ring hover:text-lime"
+                      href="https://www.instagram.com/pacu_pesca/"
+                    >
+                      Instagram
+                    </a>
+                    <a
+                      className="focus-ring hover:text-lime"
+                      href="https://www.facebook.com/PACUPESCAVARZEAPAULISTA/"
+                    >
+                      Facebook
+                    </a>
+                    <a className="focus-ring hover:text-lime" href={catalogUrl}>
+                      Catálogo
+                    </a>
+                  </div>
                 </div>
               </div>
             </address>
@@ -862,6 +896,9 @@ export default function BrandLandingPage() {
             </a>
             <a className="focus-ring hover:text-lime" href="#produtos">
               Produtos
+            </a>
+            <a className="focus-ring hover:text-lime" href="#avaliacoes">
+              Avaliações
             </a>
             <a className="focus-ring hover:text-lime" href={whatsappUrl}>
               WhatsApp
