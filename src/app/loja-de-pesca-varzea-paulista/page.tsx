@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import { Fragment } from "react";
 import {
   Anchor,
   ArrowRight,
@@ -11,6 +12,7 @@ import {
   Menu,
   MessageCircle,
   Package,
+  PawPrint,
   Phone,
   ShieldCheck,
   Shirt,
@@ -19,6 +21,7 @@ import {
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { BrandCarousel } from "./brand-carousel";
+import { HeroCarousel } from "./hero-carousel";
 import { ProductFinderCarousel } from "./product-finder-carousel";
 import { Reveal } from "./reveal";
 
@@ -55,6 +58,8 @@ const keywords = [
   "pesca esportiva",
   "pesqueiro",
   "camping e pesca",
+  "linha pet",
+  "produtos para pets",
 ];
 
 export function generateMetadata(): Metadata {
@@ -102,8 +107,6 @@ type Category = {
 
 type Product = {
   name: string;
-  category: string;
-  description: string;
   image: string;
   href: string;
 };
@@ -171,6 +174,11 @@ const headerCategories: HeaderCategory[] = [
     label: "Camping",
     href: `${catalogUrl}#categoria-camping`,
   },
+  {
+    icon: PawPrint,
+    label: "Linha Pet",
+    href: `${catalogUrl}#categoria-linha-pet`,
+  },
 ];
 
 const categories: Category[] = [
@@ -214,65 +222,41 @@ const categories: Category[] = [
 const products: Product[] = [
   {
     name: "Vara Telescópica 88% Carbono",
-    category: "Varas de pesca",
-    description:
-      "Leve, prática e versátil para quem quer uma montagem fácil de transportar.",
     image: "/images/products/vara-telescopica-carbono.webp",
     href: "/produtos/substituir-link-vara-telescopica-carbono",
   },
   {
     name: "Vara Pesca Praia Costão GT",
-    category: "Varas de pesca",
-    description:
-      "Modelo telescópico para compor conjuntos de pesca em praia, costão e lazer.",
     image: "/images/products/vara-pesca-praia-costao-gt.webp",
     href: "/produtos/substituir-link-vara-pesca-praia-costao-gt",
   },
   {
     name: "Linha Marine Vexter Ultimate",
-    category: "Linhas",
-    description:
-      "Linha de apoio para montar a tralha com resistência e visual fácil de identificar.",
     image: "/images/products/linha-marine-vexter.webp",
     href: "/produtos/substituir-link-linha-marine-vexter-ultimate",
   },
   {
     name: "Isca Artificial Lori",
-    category: "Iscas artificiais",
-    description:
-      "Isca para trabalhar diferentes ações e deixar a pescaria mais estratégica.",
     image: "/images/products/isca-artificial-lori.webp",
     href: "/produtos/substituir-link-isca-artificial-lori",
   },
   {
     name: "Anzol Kawasemi",
-    category: "Anzóis",
-    description:
-      "Item essencial para reposição, montagem de linhas e preparação antes da saída.",
     image: "/images/products/anzol-kawasemi.webp",
     href: "/produtos/substituir-link-anzol-kawasemi",
   },
   {
     name: "Suporte para Varas",
-    category: "Acessórios",
-    description:
-      "Apoio para organizar as varas no pesqueiro e acompanhar a ação com conforto.",
     image: "/images/products/suporte-para-varas.webp",
     href: "/produtos/substituir-link-suporte-para-varas",
   },
   {
     name: "Rede Samburá de Pesca",
-    category: "Acessórios",
-    description:
-      "Rede prática para transporte, apoio e organização durante a pescaria.",
     image: "/images/products/rede-sambura-pesca.webp",
     href: "/produtos/substituir-link-rede-sambura-pesca",
   },
   {
     name: "Ração Bio Truta Premium",
-    category: "Iscas e massas",
-    description:
-      "Complemento para preparar massas e cevas em pescarias de pesqueiro.",
     image: "/images/products/racao-bio-truta.webp",
     href: "/produtos/substituir-link-racao-bio-truta-premium",
   },
@@ -409,35 +393,58 @@ export default function BrandLandingPage() {
         }}
       />
 
-      <header className="absolute inset-x-0 top-0 z-30 border-b border-white/10 bg-[#2f302f] shadow-[0_12px_34px_rgba(0,0,0,0.35)]">
+      <div className="fixed inset-x-0 top-0 z-40 flex h-20 items-center justify-center overflow-hidden bg-[#2f302f] md:hidden">
+        <Image
+          src="/images/logo/pacu-pesca-logo.png"
+          width={1080}
+          height={1350}
+          priority
+          alt="Pacu Pesca"
+          className="h-24 w-auto object-contain"
+        />
+      </div>
+
+      <header className="fixed inset-x-0 top-20 z-30 border-b border-white/10 bg-[#2f302f] shadow-[0_12px_34px_rgba(0,0,0,0.35)] md:top-0">
         <nav
           aria-label="Categorias principais"
           className="mx-auto flex min-h-[70px] max-w-[1360px] items-stretch gap-1 overflow-visible px-2 py-2 md:justify-center md:gap-2 md:px-3"
         >
           {headerCategories.map((category) => (
-            <a
-              key={category.label}
-              href={category.href}
-              className={`focus-ring group flex min-w-0 flex-1 flex-col items-center justify-center gap-1 rounded-card px-1 py-1 text-center text-[11px] font-extrabold leading-tight text-white transition duration-300 hover:bg-white/8 hover:text-lime md:min-w-28 md:flex-none md:px-3 ${
-                headerCategories.indexOf(category) >= 3 ? "hidden md:flex" : ""
-              }`}
-            >
-              <category.icon
-                aria-hidden="true"
-                size={27}
-                strokeWidth={2.3}
-                className="text-white transition duration-300 group-hover:text-lime"
-              />
-              <span>{category.label}</span>
-            </a>
+            <Fragment key={category.label}>
+              <a
+                href={category.href}
+                className={`focus-ring group flex min-w-0 flex-1 flex-col items-center justify-center gap-1 rounded-card px-1 py-1 text-center text-[11px] font-extrabold leading-tight text-lime transition duration-300 hover:bg-white/8 hover:text-white md:min-w-28 md:flex-none md:px-3 ${
+                  headerCategories.indexOf(category) >= 3 ? "hidden md:flex" : ""
+                }`}
+              >
+                <category.icon
+                  aria-hidden="true"
+                  size={27}
+                  strokeWidth={2.3}
+                  className="text-lime transition duration-300 group-hover:text-white"
+                />
+                <span>{category.label}</span>
+              </a>
+              {category.label === "Linhas" ? (
+                <div className="hidden h-full w-20 shrink-0 items-center justify-center bg-[#2f302f] px-2 md:flex">
+                  <Image
+                    src="/images/logo/pacu-pesca-logo.png"
+                    width={1080}
+                    height={1350}
+                    alt="Pacu Pesca"
+                    className="h-16 w-auto object-contain"
+                  />
+                </div>
+              ) : null}
+            </Fragment>
           ))}
           <details className="relative flex min-w-0 flex-1 md:hidden">
-            <summary className="focus-ring group flex min-w-0 flex-1 cursor-pointer list-none flex-col items-center justify-center gap-1 rounded-card px-1 py-1 text-center text-[11px] font-extrabold leading-tight text-white transition duration-300 hover:bg-white/8 hover:text-lime">
+            <summary className="focus-ring group flex min-w-0 flex-1 cursor-pointer list-none flex-col items-center justify-center gap-1 rounded-card px-1 py-1 text-center text-[11px] font-extrabold leading-tight text-lime transition duration-300 hover:bg-white/8 hover:text-white">
               <Menu
                 aria-hidden="true"
                 size={27}
                 strokeWidth={2.3}
-                className="text-white transition duration-300 group-hover:text-lime"
+                className="text-lime transition duration-300 group-hover:text-white"
               />
               <span>VER MAIS</span>
             </summary>
@@ -446,13 +453,13 @@ export default function BrandLandingPage() {
                 <a
                   key={category.label}
                   href={category.href}
-                  className="focus-ring group flex items-center gap-3 rounded-card px-3 py-3 text-sm font-extrabold text-white transition duration-300 hover:bg-white/8 hover:text-lime"
+                  className="focus-ring group flex items-center gap-3 rounded-card px-3 py-3 text-sm font-extrabold text-lime transition duration-300 hover:bg-white/8 hover:text-white"
                 >
                   <category.icon
                     aria-hidden="true"
                     size={21}
                     strokeWidth={2.3}
-                    className="text-white transition duration-300 group-hover:text-lime"
+                    className="text-lime transition duration-300 group-hover:text-white"
                   />
                   <span>{category.label}</span>
                 </a>
@@ -472,39 +479,7 @@ export default function BrandLandingPage() {
       </a>
 
       <main>
-        <section className="relative isolate min-h-[94vh] overflow-hidden pt-28">
-          <Image
-            src={heroImage}
-            alt="Fachada da loja Pacu Pesca com letreiro e produtos de pesca"
-            fill
-            priority
-            sizes="100vw"
-            className="absolute inset-0 -z-20 object-cover object-[64%_center]"
-          />
-          <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(5,6,7,0.68)_0%,rgba(5,6,7,0.54)_34%,rgba(5,6,7,0.22)_70%,rgba(5,6,7,0.1)_100%)]" />
-          <div className="absolute inset-x-0 bottom-0 -z-10 h-36 bg-gradient-to-t from-charcoal to-transparent" />
-          <div className="section-shell flex min-h-[calc(94vh-7rem)] items-center py-16">
-            <Reveal className="max-w-3xl">
-              <p className="mb-5 inline-flex items-center gap-2 rounded-card border border-lime/35 bg-lime/10 px-3 py-2 text-xs font-black uppercase tracking-wide text-lime">
-                <Fish aria-hidden="true" size={16} />
-                Pacu Pesca | Artigos para pescaria
-              </p>
-              <h1 className="font-display text-5xl font-bold uppercase leading-none text-paper md:text-7xl lg:text-8xl">
-                Sua próxima pescaria começa com o equipamento certo
-              </h1>
-              <p className="mt-6 max-w-2xl text-lg leading-8 text-smoke md:text-xl">
-                A Pacu Pesca reúne varas, linhas, iscas, anzóis e acessórios
-                para quem vive a pesca com paixão, técnica e confiança.
-              </p>
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <PrimaryLink href="#produtos">Conhecer produtos</PrimaryLink>
-                <PrimaryLink href={whatsappUrl} variant="dark">
-                  Falar com especialista
-                </PrimaryLink>
-              </div>
-            </Reveal>
-          </div>
-        </section>
+        <HeroCarousel />
 
         <Reveal id="produtos" as="section" className="section-shell py-20">
           <SectionHeading
@@ -517,6 +492,7 @@ export default function BrandLandingPage() {
               <a
                 key={product.name}
                 href={product.href}
+                aria-label={`Conhecer ${product.name}`}
                 className="focus-ring group flex min-h-full flex-col overflow-hidden rounded-card border border-white/10 bg-graphite transition duration-300 hover:-translate-y-1 hover:border-water/70"
               >
                 <div className="relative aspect-square overflow-hidden bg-white">
@@ -529,19 +505,9 @@ export default function BrandLandingPage() {
                   />
                 </div>
                 <div className="flex flex-1 flex-col p-5">
-                  <p className="text-xs font-black uppercase tracking-wide text-water">
-                    {product.category}
-                  </p>
-                  <h3 className="mt-2 font-display text-2xl font-bold uppercase leading-tight text-paper">
+                  <h3 className="font-display text-2xl font-bold uppercase leading-tight text-paper">
                     {product.name}
                   </h3>
-                  <p className="mt-3 flex-1 text-sm leading-7 text-smoke">
-                    {product.description}
-                  </p>
-                  <span className="mt-5 inline-flex items-center gap-2 text-sm font-black uppercase text-lime">
-                    Conhecer produto
-                    <ArrowRight aria-hidden="true" size={16} />
-                  </span>
                 </div>
               </a>
             ))}
