@@ -1,19 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import {
-  ArrowRight,
-  ChevronLeft,
-  ChevronRight,
-  Fish,
-  PawPrint,
-} from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { useEffect, useRef, useState, type PointerEvent } from "react";
 
 type HeroSlide = {
-  eyebrow: string;
   title: string;
-  description: string;
   image: string;
   alt: string;
   secondaryImage: string;
@@ -25,10 +17,7 @@ type HeroSlide = {
 
 const slides: HeroSlide[] = [
   {
-    eyebrow: "Equipamentos para começar bem",
     title: "A tralha certa muda toda pescaria",
-    description:
-      "Encontre varas, linhas e acessórios selecionados para montar um conjunto que acompanha o seu ritmo.",
     image: "/images/products/vara-telescopica-carbono.webp",
     alt: "Vara telescópica de carbono",
     secondaryImage: "/images/products/linha-marine-vexter.webp",
@@ -38,10 +27,7 @@ const slides: HeroSlide[] = [
     accent: "lime",
   },
   {
-    eyebrow: "Iscas e montagens",
     title: "Mais estratégia em cada arremesso",
-    description:
-      "Iscas, anzóis e itens de apoio para você testar novas montagens e aproveitar melhor o seu dia na água.",
     image: "/images/products/isca-artificial-lori.webp",
     alt: "Isca artificial Lori",
     secondaryImage: "/images/products/anzol-kawasemi.webp",
@@ -51,10 +37,7 @@ const slides: HeroSlide[] = [
     accent: "water",
   },
   {
-    eyebrow: "Pesqueiro, lazer e camping",
     title: "Prepare o próximo momento de pesca",
-    description:
-      "Do suporte à ração, os detalhes que deixam sua experiência mais organizada, confortável e completa.",
     image: "/images/products/suporte-para-varas.webp",
     alt: "Suporte para varas de pesca",
     secondaryImage: "/images/products/racao-bio-truta.webp",
@@ -67,22 +50,16 @@ const slides: HeroSlide[] = [
 
 const accentClasses = {
   lime: {
-    text: "text-lime",
-    border: "border-lime/35",
     glow: "bg-lime/12",
     button: "bg-lime text-charcoal hover:bg-[#c8ff28]",
     dot: "bg-lime",
   },
   water: {
-    text: "text-water",
-    border: "border-water/35",
     glow: "bg-water/12",
     button: "bg-water text-white hover:bg-[#17b5f2]",
     dot: "bg-water",
   },
   fish: {
-    text: "text-fish",
-    border: "border-fish/35",
     glow: "bg-fish/12",
     button: "bg-fish text-white hover:bg-[#ff7441]",
     dot: "bg-fish",
@@ -217,22 +194,7 @@ export function HeroCarousel() {
       <div className="section-shell relative flex min-h-[620px] items-center py-8 md:min-h-[552px] md:py-16">
         <div className="grid w-full items-center gap-8 lg:grid-cols-[0.92fr_1.08fr] lg:gap-4">
           <div className="relative z-10 max-w-2xl">
-            <div className="mb-5 flex flex-wrap items-center gap-3">
-              <p className={`inline-flex items-center gap-2 rounded-full border ${accent.border} ${accent.glow} px-3 py-2 text-xs font-black uppercase tracking-[0.14em] ${accent.text}`}>
-                <Fish aria-hidden="true" size={15} />
-                {slide.eyebrow}
-              </p>
-              <span className="text-xs font-bold uppercase tracking-[0.18em] text-white/50">
-                Pacu Pesca
-              </span>
-            </div>
-            <h1 className="max-w-xl font-display text-5xl font-bold uppercase leading-[0.94] text-paper md:text-7xl lg:text-[5.4rem]">
-              {slide.title}
-            </h1>
-            <p className="mt-6 max-w-lg text-base leading-7 text-smoke md:text-lg md:leading-8">
-              {slide.description}
-            </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <div className="flex flex-col gap-3 sm:flex-row">
               <a
                 href="#produtos"
                 className={`focus-ring inline-flex min-h-12 items-center justify-center gap-2 rounded-card px-5 py-3 text-sm font-extrabold uppercase shadow-[0_18px_44px_rgba(0,0,0,0.24)] transition duration-300 hover:-translate-y-0.5 ${accent.button}`}
@@ -247,10 +209,6 @@ export function HeroCarousel() {
                 Ver produtos
               </a>
             </div>
-            <p className="mt-5 inline-flex items-center gap-2 text-xs font-black uppercase tracking-[0.14em] text-white/65">
-              <PawPrint aria-hidden="true" size={15} className="text-lime" />
-              Também trabalhamos com linha pet
-            </p>
           </div>
 
           <div className="relative mx-auto h-[390px] w-full max-w-[620px] sm:h-[390px] lg:h-[500px]">
