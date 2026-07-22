@@ -8,7 +8,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 const brands = [
   {
     name: "Lori Fishing",
-    image: "/images/brands/lori-fishing.png",
+    image: "/images/brands/lori-fishing.svg",
     href: "/produtos/substituir-link-marca-lori-fishing",
   },
   {
@@ -18,7 +18,7 @@ const brands = [
   },
   {
     name: "Megabass",
-    image: "/images/brands/megabass.png",
+    image: "/images/brands/megabass.svg",
     href: "/produtos/substituir-link-marca-megabass",
   },
   {
