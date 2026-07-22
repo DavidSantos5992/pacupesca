@@ -502,6 +502,34 @@ export default async function BrandLandingPage() {
       <main id="inicio">
         <HeroCarousel />
 
+        <section className="surface-line border-y border-white/10 bg-graphite-soft py-20">
+          <Reveal className="section-shell">
+            <div className="mb-10 flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+              <div className="max-w-3xl">
+                <p className="mb-3 inline-flex rounded-card border border-water/35 bg-water/10 px-3 py-1 text-xs font-black uppercase tracking-wide text-water">
+                  Catálogo Pacu Pesca
+                </p>
+                <h2 className="font-display text-4xl font-bold uppercase leading-tight text-paper md:text-5xl">
+                  Encontre tudo o que precisa pra sua pescaria aqui!
+                </h2>
+                <p className="mt-4 text-base leading-8 text-smoke md:text-lg">
+                  Navegue pelas categorias e marcas mais procuradas para montar
+                  sua tralha com rapidez.
+                </p>
+              </div>
+              <PrimaryLink href={catalogUrl} variant="dark">
+                Ver catálogo completo
+              </PrimaryLink>
+            </div>
+
+            <ProductFinderCarousel />
+
+            <div className="mt-12">
+              <BrandCarousel />
+            </div>
+          </Reveal>
+        </section>
+
         <Reveal id="produtos" as="section" className="section-shell py-20">
           <SectionHeading
             eyebrow="Produtos em destaque"
@@ -534,34 +562,6 @@ export default async function BrandLandingPage() {
             ))}
           </div>
         </Reveal>
-
-        <section className="surface-line border-y border-white/10 bg-graphite-soft py-20">
-          <Reveal className="section-shell">
-            <div className="mb-10 flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
-              <div className="max-w-3xl">
-                <p className="mb-3 inline-flex rounded-card border border-water/35 bg-water/10 px-3 py-1 text-xs font-black uppercase tracking-wide text-water">
-                  Catálogo Pacu Pesca
-                </p>
-                <h2 className="font-display text-4xl font-bold uppercase leading-tight text-paper md:text-5xl">
-                  Encontre tudo o que precisa pra sua pescaria aqui!
-                </h2>
-                <p className="mt-4 text-base leading-8 text-smoke md:text-lg">
-                  Navegue pelas categorias e marcas mais procuradas para montar
-                  sua tralha com rapidez.
-                </p>
-              </div>
-              <PrimaryLink href={catalogUrl} variant="dark">
-                Ver catálogo completo
-              </PrimaryLink>
-            </div>
-
-            <ProductFinderCarousel />
-
-            <div className="mt-12">
-              <BrandCarousel />
-            </div>
-          </Reveal>
-        </section>
 
         <section
           id="categorias"
