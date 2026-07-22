@@ -523,10 +523,6 @@ export default async function BrandLandingPage() {
             </div>
 
             <ProductFinderCarousel />
-
-            <div className="mt-12">
-              <BrandCarousel />
-            </div>
           </Reveal>
         </section>
 
@@ -561,6 +557,10 @@ export default async function BrandLandingPage() {
               </a>
             ))}
           </div>
+        </Reveal>
+
+        <Reveal as="section" className="section-shell py-20">
+          <BrandCarousel />
         </Reveal>
 
         <section
