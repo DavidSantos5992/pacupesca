@@ -8,42 +8,26 @@ type HeroSlide = {
   title: string;
   image: string;
   alt: string;
-  secondaryImage: string;
-  secondaryAlt: string;
-  tertiaryImage: string;
-  tertiaryAlt: string;
   accent: "lime" | "water" | "fish";
 };
 
 const slides: HeroSlide[] = [
   {
-    title: "A tralha certa muda toda pescaria",
-    image: "/images/products/vara-telescopica-carbono.webp",
-    alt: "Vara telescópica de carbono",
-    secondaryImage: "/images/products/linha-marine-vexter.webp",
-    secondaryAlt: "Linha Marine Vexter Ultimate",
-    tertiaryImage: "/images/products/suporte-para-varas.webp",
-    tertiaryAlt: "Suporte para varas",
+    title: "Massas e iscas",
+    image: "/images/banners/massas-e-iscas.png",
+    alt: "Banner de massas e iscas para pesca",
     accent: "lime",
   },
   {
-    title: "Mais estratégia em cada arremesso",
-    image: "/images/products/isca-artificial-lori.webp",
-    alt: "Isca artificial Lori",
-    secondaryImage: "/images/products/anzol-kawasemi.webp",
-    secondaryAlt: "Anzol Kawasemi",
-    tertiaryImage: "/images/products/rede-sambura-pesca.webp",
-    tertiaryAlt: "Rede samburá de pesca",
+    title: "Suporte para robôzinho",
+    image: "/images/banners/suporte-robozinho-5-ou-6-varas.png",
+    alt: "Banner de suporte para robôzinho para cinco ou seis varas",
     accent: "water",
   },
   {
-    title: "Prepare o próximo momento de pesca",
-    image: "/images/products/suporte-para-varas.webp",
-    alt: "Suporte para varas de pesca",
-    secondaryImage: "/images/products/racao-bio-truta.webp",
-    secondaryAlt: "Ração Bio Truta Premium",
-    tertiaryImage: "/images/products/vara-pesca-praia-costao-gt.webp",
-    tertiaryAlt: "Vara para pesca de praia e costão",
+    title: "Suporte robozão",
+    image: "/images/banners/suporte-robozao.png",
+    alt: "Banner de suporte robozão para varas de pesca",
     accent: "fish",
   },
 ];
@@ -60,7 +44,6 @@ const accentClasses = {
     dot: "bg-water",
   },
   fish: {
-    glow: "bg-fish/12",
     button: "bg-fish text-white hover:bg-[#ff7441]",
     dot: "bg-fish",
   },
@@ -159,7 +142,7 @@ export function HeroCarousel() {
     <section
       aria-label="Destaques Pacu Pesca"
       aria-roledescription="carousel"
-      className="relative isolate min-h-[700px] touch-pan-y overflow-hidden bg-charcoal pt-20 md:min-h-[680px] md:pt-28"
+      className="relative isolate touch-pan-y overflow-hidden bg-charcoal pt-20 md:pt-28"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
       onFocus={() => setIsPaused(true)}
@@ -178,120 +161,88 @@ export function HeroCarousel() {
       <div className="absolute -right-44 top-8 -z-10 h-[34rem] w-[34rem] rounded-full border border-white/8 bg-white/[0.02] shadow-[0_0_120px_rgba(0,159,227,0.12)]" />
       <div className="absolute -right-20 top-32 -z-10 h-[25rem] w-[25rem] rounded-full border border-white/8" />
 
-      {slides.map((item, index) => (
-        <div
-          key={item.title}
-          aria-hidden={index !== active}
-          className={`absolute inset-0 -z-10 transition duration-700 ease-out ${
-            index === active ? "opacity-100" : "pointer-events-none opacity-0"
-          }`}
-        >
-          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,6,7,0.96)_0%,rgba(5,6,7,0.78)_36%,rgba(5,6,7,0.2)_68%,rgba(5,6,7,0.42)_100%)]" />
-          <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(5,6,7,0.82),transparent_38%)]" />
-        </div>
-      ))}
-
-      <div className="section-shell relative flex min-h-[620px] items-center py-8 md:min-h-[552px] md:py-16">
-        <div className="grid w-full items-center gap-8 lg:grid-cols-[0.92fr_1.08fr] lg:gap-4">
-          <div className="relative z-10 max-w-2xl">
-            <div className="flex flex-col gap-3 sm:flex-row">
-              <a
-                href="#produtos"
-                className={`focus-ring inline-flex min-h-12 items-center justify-center gap-2 rounded-card px-5 py-3 text-sm font-extrabold uppercase shadow-[0_18px_44px_rgba(0,0,0,0.24)] transition duration-300 hover:-translate-y-0.5 ${accent.button}`}
-              >
-                Comprar agora
-                <ArrowRight aria-hidden="true" size={18} strokeWidth={2.5} />
-              </a>
-              <a
-                href="https://pacupesca.com/produtos/"
-                className="focus-ring inline-flex min-h-12 items-center justify-center gap-2 rounded-card border border-white/15 bg-white/8 px-5 py-3 text-sm font-extrabold uppercase text-paper transition duration-300 hover:-translate-y-0.5 hover:border-white/35 hover:bg-white/12"
-              >
-                Ver produtos
-              </a>
-            </div>
-          </div>
-
-          <div className="relative mx-auto h-[390px] w-full max-w-[620px] sm:h-[390px] lg:h-[500px]">
-            <div className={`absolute left-[12%] top-[11%] h-56 w-56 rounded-full blur-3xl sm:h-72 sm:w-72 ${accent.glow}`} />
-            <div className="absolute left-[4%] top-[5%] h-[90%] w-[92%] overflow-hidden rounded-[24px] border border-white/20 bg-white p-3 shadow-[0_28px_70px_rgba(0,0,0,0.38)] sm:left-[7%] sm:top-[12%] sm:h-[76%] sm:w-[64%] sm:rotate-[-5deg] sm:rounded-[28px] sm:p-5">
-              <Image
-                key={`${active}-main`}
-                src={slide.image}
-                alt={slide.alt}
-                fill
-                priority={active === 0}
-                sizes="(min-width: 1024px) 36vw, (min-width: 640px) 60vw, 88vw"
-                className="object-contain p-3 transition duration-700 sm:p-5"
-              />
-              <span className="absolute bottom-4 left-4 rounded-full bg-charcoal/85 px-3 py-1 text-[10px] font-black uppercase tracking-wider text-white sm:bottom-5 sm:left-5">
-                Em destaque
-              </span>
-            </div>
-            <div className="absolute right-[3%] top-[3%] hidden h-[39%] w-[34%] rotate-[7deg] overflow-hidden rounded-2xl border border-white/20 bg-white p-2 shadow-[0_18px_42px_rgba(0,0,0,0.3)] sm:block sm:p-3">
-              <Image
-                key={`${active}-secondary`}
-                src={slide.secondaryImage}
-                alt={slide.secondaryAlt}
-                fill
-                sizes="(min-width: 1024px) 18vw, 34vw"
-                className="object-contain p-2 sm:p-3"
-              />
-            </div>
-            <div className="absolute bottom-[4%] right-[10%] hidden h-[36%] w-[31%] rotate-[-6deg] overflow-hidden rounded-2xl border border-white/20 bg-white p-2 shadow-[0_18px_42px_rgba(0,0,0,0.3)] sm:block sm:p-3">
-              <Image
-                key={`${active}-tertiary`}
-                src={slide.tertiaryImage}
-                alt={slide.tertiaryAlt}
-                fill
-                sizes="(min-width: 1024px) 17vw, 32vw"
-                className="object-contain p-2 sm:p-3"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="section-shell pointer-events-none absolute inset-x-0 top-1/2 z-20 flex -translate-y-1/2 items-center justify-between">
-        <button
-          type="button"
-          aria-label="Destaque anterior"
-          onClick={goPrevious}
-          className="focus-ring pointer-events-auto hidden h-10 w-10 place-items-center rounded-full border border-white/15 bg-charcoal/60 text-white transition hover:border-white/35 hover:bg-white/10 md:grid"
-        >
-          <ChevronLeft aria-hidden="true" size={19} />
-        </button>
-        <button
-          type="button"
-          aria-label="Próximo destaque"
-          onClick={goNext}
-          className="focus-ring pointer-events-auto hidden h-10 w-10 place-items-center rounded-full border border-white/15 bg-charcoal/60 text-white transition hover:border-white/35 hover:bg-white/10 md:grid"
-        >
-          <ChevronRight aria-hidden="true" size={19} />
-        </button>
-      </div>
-
-      <div className="section-shell absolute inset-x-0 bottom-6 z-20 flex items-center justify-center">
-        <div className="flex items-center gap-2" role="tablist" aria-label="Selecionar destaque">
-          {slides.map((item, index) => (
-            <button
-              key={item.title}
-              type="button"
-              role="tab"
-              aria-selected={active === index}
-              aria-label={`Ir para destaque ${index + 1}: ${item.title}`}
-              onPointerDown={(event) => event.stopPropagation()}
-              onClick={(event) => {
-                event.stopPropagation();
-                goTo(index);
-              }}
-              className={`focus-ring h-2 rounded-full transition-all duration-300 ${
-                active === index ? `w-2 md:w-10 ${accent.dot}` : "w-2 bg-white/35 hover:bg-white/65"
-              }`}
+      <div className="relative aspect-[1697/927] w-full">
+        {slides.map((item, index) => (
+          <div
+            key={item.title}
+            aria-hidden={index !== active}
+            className={`absolute inset-0 transition duration-700 ease-out ${
+              index === active ? "opacity-100" : "pointer-events-none opacity-0"
+            }`}
+          >
+            <Image
+              src={item.image}
+              alt={item.alt}
+              fill
+              priority={index === 0}
+              sizes="100vw"
+              className="object-cover"
             />
-          ))}
-          <span className="ml-2 hidden text-xs font-black uppercase tracking-wider text-white/55 md:inline">
-            0{active + 1} / 0{slides.length}
-          </span>
+            <div className="absolute inset-0 bg-black/10" />
+            <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(5,6,7,0.62),transparent_32%)]" />
+          </div>
+        ))}
+
+        <div className="section-shell pointer-events-none absolute inset-x-0 bottom-8 z-10 flex items-end md:bottom-12">
+          <div className="pointer-events-auto flex flex-col gap-3 sm:flex-row">
+            <a
+              href="#produtos"
+              className={`focus-ring inline-flex min-h-12 items-center justify-center gap-2 rounded-card px-5 py-3 text-sm font-extrabold uppercase shadow-[0_18px_44px_rgba(0,0,0,0.24)] transition duration-300 hover:-translate-y-0.5 ${accent.button}`}
+            >
+              Comprar agora
+              <ArrowRight aria-hidden="true" size={18} strokeWidth={2.5} />
+            </a>
+            <a
+              href="https://pacupesca.com/produtos/"
+              className="focus-ring inline-flex min-h-12 items-center justify-center gap-2 rounded-card border border-white/15 bg-white/8 px-5 py-3 text-sm font-extrabold uppercase text-paper transition duration-300 hover:-translate-y-0.5 hover:border-white/35 hover:bg-white/12"
+            >
+              Ver produtos
+            </a>
+          </div>
+        </div>
+
+        <div className="section-shell pointer-events-none absolute inset-x-0 top-1/2 z-20 flex -translate-y-1/2 items-center justify-between">
+          <button
+            type="button"
+            aria-label="Destaque anterior"
+            onClick={goPrevious}
+            className="focus-ring pointer-events-auto hidden h-10 w-10 place-items-center rounded-full border border-white/15 bg-charcoal/60 text-white transition hover:border-white/35 hover:bg-white/10 md:grid"
+          >
+            <ChevronLeft aria-hidden="true" size={19} />
+          </button>
+          <button
+            type="button"
+            aria-label="Próximo destaque"
+            onClick={goNext}
+            className="focus-ring pointer-events-auto hidden h-10 w-10 place-items-center rounded-full border border-white/15 bg-charcoal/60 text-white transition hover:border-white/35 hover:bg-white/10 md:grid"
+          >
+            <ChevronRight aria-hidden="true" size={19} />
+          </button>
+        </div>
+
+        <div className="section-shell absolute inset-x-0 bottom-6 z-20 flex items-center justify-center">
+          <div className="flex items-center gap-2" role="tablist" aria-label="Selecionar destaque">
+            {slides.map((item, index) => (
+              <button
+                key={item.title}
+                type="button"
+                role="tab"
+                aria-selected={active === index}
+                aria-label={`Ir para destaque ${index + 1}: ${item.title}`}
+                onPointerDown={(event) => event.stopPropagation()}
+                onClick={(event) => {
+                  event.stopPropagation();
+                  goTo(index);
+                }}
+                className={`focus-ring h-2 rounded-full transition-all duration-300 ${
+                  active === index ? `w-2 md:w-10 ${accent.dot}` : "w-2 bg-white/35 hover:bg-white/65"
+                }`}
+              />
+            ))}
+            <span className="ml-2 hidden text-xs font-black uppercase tracking-wider text-white/55 md:inline">
+              0{active + 1} / 0{slides.length}
+            </span>
+          </div>
         </div>
       </div>
     </section>
