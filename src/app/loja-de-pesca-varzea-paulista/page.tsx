@@ -400,7 +400,7 @@ export default async function BrandLandingPage() {
 
       <header className="fixed inset-x-0 top-0 z-30 border-b border-white/10 bg-[#2f302f] shadow-[0_12px_34px_rgba(0,0,0,0.35)]">
         <div className="relative grid h-20 grid-cols-[1fr_auto_1fr] items-center bg-[#2f302f] px-1 md:hidden">
-          <div className="flex items-center justify-start gap-0.5">
+          <div className="flex items-center justify-start gap-1.5">
             <details className="relative">
               <summary className="mobile-menu-trigger focus-ring relative z-[60] grid h-11 w-9 cursor-pointer list-none place-items-center text-white [&::-webkit-details-marker]:hidden" aria-label="Abrir menu de categorias">
                 <Menu aria-hidden="true" size={27} strokeWidth={2.4} className="mobile-menu-icon mobile-menu-open" />
@@ -450,8 +450,8 @@ export default async function BrandLandingPage() {
               className="h-16 w-auto object-contain"
             />
           </a>
-          <div className="flex items-center justify-end gap-0.5">
-            {headerCategories.slice(2, 4).map((category) => (
+          <div className="flex items-center justify-end gap-1.5">
+            {[headerCategories[4], ...headerCategories.slice(2, 4)].map((category) => (
               <a
                 key={category.label}
                 href={category.href}
