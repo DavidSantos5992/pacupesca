@@ -1,7 +1,7 @@
 "use client";
 
 import { ChevronLeft, ChevronRight, ExternalLink, Quote, Star } from "lucide-react";
-import { useRef, useState, type PointerEvent } from "react";
+import { useEffect, useRef, useState, type PointerEvent } from "react";
 import type { GoogleReviewsFeed } from "@/lib/google-reviews";
 
 function formatDate(date: string) {
@@ -32,9 +32,27 @@ export function ReviewsSection({
   isFallback,
 }: GoogleReviewsFeed) {
   const [page, setPage] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
   const drag = useRef({ pointerId: -1, startX: 0, didMove: false });
-  const pageCount = Math.max(1, Math.ceil(reviews.length / 3));
-  const visibleReviews = reviews.slice(page * 3, page * 3 + 3);
+  const reviewsPerPage = isMobile ? 1 : 3;
+  const pageCount = Math.max(1, Math.ceil(reviews.length / reviewsPerPage));
+  const visibleReviews = reviews.slice(
+    page * reviewsPerPage,
+    page * reviewsPerPage + reviewsPerPage,
+  );
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 767px)");
+    const updateViewport = () => {
+      setIsMobile(mediaQuery.matches);
+      setPage(0);
+    };
+
+    updateViewport();
+    mediaQuery.addEventListener("change", updateViewport);
+
+    return () => mediaQuery.removeEventListener("change", updateViewport);
+  }, []);
 
   function handlePointerDown(event: PointerEvent<HTMLDivElement>) {
     if (event.pointerType === "mouse" && event.button !== 0) return;
@@ -155,7 +173,7 @@ export function ReviewsSection({
                     type="button"
                     role="tab"
                     aria-selected={page === index}
-                    aria-label={`Mostrar avaliações ${index * 3 + 1} a ${Math.min((index + 1) * 3, reviews.length)}`}
+                    aria-label={`Mostrar avaliações ${index * reviewsPerPage + 1} a ${Math.min((index + 1) * reviewsPerPage, reviews.length)}`}
                     onClick={() => setPage(index)}
                     className={`focus-ring h-2 rounded-full transition-all ${page === index ? "w-7 bg-lime" : "w-2 bg-white/30 hover:bg-white/60"}`}
                   />
