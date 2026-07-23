@@ -13,14 +13,12 @@ import {
   MessageCircle,
   Package,
   PawPrint,
-  Search,
-  ShoppingCart,
   Phone,
   ShieldCheck,
   Shirt,
   Sparkles,
   Tent,
-  UserRound,
+  X,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { BrandCarousel } from "./brand-carousel";
@@ -401,14 +399,48 @@ export default async function BrandLandingPage() {
       />
 
       <header className="fixed inset-x-0 top-0 z-30 border-b border-white/10 bg-[#2f302f] shadow-[0_12px_34px_rgba(0,0,0,0.35)]">
-        <div className="flex h-20 items-center justify-between bg-[#2d86df] px-4 md:hidden">
-          <a href="#categorias" aria-label="Abrir menu de categorias" className="focus-ring grid h-12 w-12 place-items-center text-white">
-            <Menu aria-hidden="true" size={30} strokeWidth={2.4} />
-          </a>
-          <a href="#produtos" aria-label="Buscar produtos" className="focus-ring grid h-12 w-12 place-items-center text-white">
-            <Search aria-hidden="true" size={29} strokeWidth={2.3} />
-          </a>
-          <a href="#inicio" aria-label="Ir para o início" className="focus-ring grid h-16 w-24 place-items-center border border-white/45 px-2">
+        <div className="relative grid h-20 grid-cols-[1fr_auto_1fr] items-center bg-[#2f302f] px-1 md:hidden">
+          <div className="flex items-center justify-start gap-0.5">
+            <details className="relative">
+              <summary className="mobile-menu-trigger focus-ring relative z-[60] grid h-11 w-9 cursor-pointer list-none place-items-center text-white [&::-webkit-details-marker]:hidden" aria-label="Abrir menu de categorias">
+                <Menu aria-hidden="true" size={27} strokeWidth={2.4} className="mobile-menu-icon mobile-menu-open" />
+                <X aria-hidden="true" size={27} strokeWidth={2.4} className="mobile-menu-icon mobile-menu-close" />
+              </summary>
+              <div className="mobile-menu-panel fixed inset-y-0 left-0 z-50 w-[min(86vw,320px)] overflow-y-auto border-r border-white/10 bg-[#2f302f] p-4 pt-24 shadow-[12px_0_34px_rgba(0,0,0,0.45)]">
+                <p className="mb-4 border-b border-white/10 pb-3 text-xs font-black uppercase tracking-[0.18em] text-white/70">
+                  Categorias
+                </p>
+                <div className="grid gap-1">
+                  {headerCategories.map((category) => (
+                    <a
+                      key={category.label}
+                      href={category.href}
+                      className="focus-ring group flex items-center gap-3 rounded-card px-3 py-3 text-sm font-extrabold text-lime transition duration-300 hover:bg-white/8 hover:text-white"
+                    >
+                      <category.icon
+                        aria-hidden="true"
+                        size={22}
+                        strokeWidth={2.3}
+                        className="text-lime transition duration-300 group-hover:text-white"
+                      />
+                      <span>{category.label}</span>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </details>
+            {headerCategories.slice(0, 2).map((category) => (
+              <a
+                key={category.label}
+                href={category.href}
+                className="focus-ring flex w-11 flex-col items-center justify-center gap-0.5 rounded-card px-0.5 py-1 text-center text-[8px] font-extrabold leading-tight !text-lime"
+              >
+                <category.icon aria-hidden="true" size={21} strokeWidth={2.3} className="!text-lime" />
+                <span>{category.label}</span>
+              </a>
+            ))}
+          </div>
+          <a href="#inicio" aria-label="Ir para o início" className="focus-ring grid h-16 w-20 place-items-center px-1">
             <Image
               src="/images/logo/pacu-pesca-logo.png"
               width={1080}
@@ -418,13 +450,18 @@ export default async function BrandLandingPage() {
               className="h-16 w-auto object-contain"
             />
           </a>
-          <a href="#contato" aria-label="Acessar contato" className="focus-ring grid h-12 w-12 place-items-center text-white">
-            <UserRound aria-hidden="true" size={30} strokeWidth={2.2} />
-          </a>
-          <a href="https://pacupesca.com/produtos/" aria-label="Abrir carrinho" className="focus-ring relative grid h-12 w-12 place-items-center text-white">
-            <ShoppingCart aria-hidden="true" size={31} strokeWidth={2.2} />
-            <span className="absolute right-0 top-0 grid h-6 w-6 place-items-center rounded-full bg-lime text-xs font-black text-charcoal">0</span>
-          </a>
+          <div className="flex items-center justify-end gap-0.5">
+            {headerCategories.slice(2, 4).map((category) => (
+              <a
+                key={category.label}
+                href={category.href}
+                className="focus-ring flex w-11 flex-col items-center justify-center gap-0.5 rounded-card px-0.5 py-1 text-center text-[8px] font-extrabold leading-tight !text-lime"
+              >
+                <category.icon aria-hidden="true" size={21} strokeWidth={2.3} className="!text-lime" />
+                <span>{category.label}</span>
+              </a>
+            ))}
+          </div>
         </div>
         <nav
           aria-label="Categorias principais"

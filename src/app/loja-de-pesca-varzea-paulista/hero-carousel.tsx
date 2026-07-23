@@ -184,17 +184,22 @@ export function HeroCarousel() {
         ))}
 
         <div className="section-shell pointer-events-none absolute inset-x-0 bottom-8 z-10 flex items-end md:bottom-12">
-          <div className="pointer-events-auto flex flex-col gap-3 sm:flex-row">
+          <div className="pointer-events-auto flex w-full flex-row justify-center gap-2 md:w-auto md:justify-start">
             <a
               href="#produtos"
-              className={`focus-ring inline-flex min-h-12 items-center justify-center gap-2 rounded-card px-5 py-3 text-sm font-extrabold uppercase shadow-[0_18px_44px_rgba(0,0,0,0.24)] transition duration-300 hover:-translate-y-0.5 ${accent.button}`}
+              className={`focus-ring inline-flex min-h-10 items-center justify-center gap-1.5 rounded-card px-3 py-2 text-[11px] font-extrabold uppercase shadow-[0_18px_44px_rgba(0,0,0,0.24)] transition duration-300 hover:-translate-y-0.5 md:min-h-12 md:gap-2 md:px-5 md:py-3 md:text-sm ${accent.button}`}
             >
               Comprar agora
-              <ArrowRight aria-hidden="true" size={18} strokeWidth={2.5} />
+              <ArrowRight
+                aria-hidden="true"
+                size={18}
+                strokeWidth={2.5}
+                className="h-4 w-4 md:h-[18px] md:w-[18px]"
+              />
             </a>
             <a
               href="https://pacupesca.com/produtos/"
-              className="focus-ring inline-flex min-h-12 items-center justify-center gap-2 rounded-card border border-white/15 bg-white/8 px-5 py-3 text-sm font-extrabold uppercase text-paper transition duration-300 hover:-translate-y-0.5 hover:border-white/35 hover:bg-white/12"
+              className="focus-ring inline-flex min-h-10 items-center justify-center gap-1.5 rounded-card border border-white/15 bg-white/8 px-3 py-2 text-[11px] font-extrabold uppercase text-paper transition duration-300 hover:-translate-y-0.5 hover:border-white/35 hover:bg-white/12 md:min-h-12 md:gap-2 md:px-5 md:py-3 md:text-sm"
             >
               Ver produtos
             </a>

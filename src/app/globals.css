@@ -95,6 +95,52 @@ a {
   display: none;
 }
 
+.mobile-menu-icon {
+  position: absolute;
+  transition:
+    opacity 220ms ease,
+    transform 220ms ease;
+}
+
+.mobile-menu-open {
+  opacity: 1;
+  visibility: visible;
+  transform: rotate(0) scale(1);
+}
+
+.mobile-menu-close {
+  opacity: 0;
+  visibility: hidden;
+  transform: rotate(-90deg) scale(0.75);
+}
+
+details[open] .mobile-menu-open {
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.75);
+}
+
+details[open] .mobile-menu-close {
+  opacity: 1;
+  visibility: visible;
+  transform: rotate(0) scale(1);
+}
+
+.mobile-menu-panel {
+  animation: mobile-menu-slide-in 220ms ease-out both;
+}
+
+@keyframes mobile-menu-slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
