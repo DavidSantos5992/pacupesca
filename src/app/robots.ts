@@ -9,7 +9,7 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/admin/", "/account/", "/checkout/", "/search/"],
       },
     ],
-    sitemap: "https://pacupesca.com/sitemap.xml",
-    host: "https://pacupesca.com",
+    sitemap: "https://www.pacupesca.com/sitemap.xml",
+    host: "https://www.pacupesca.com",
   };
 }

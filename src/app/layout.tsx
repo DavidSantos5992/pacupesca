@@ -15,7 +15,7 @@ const oswald = Oswald({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://pacupesca.com"),
+  metadataBase: new URL("https://www.pacupesca.com"),
   applicationName: "Pacu Pesca",
   title: {
     default: "Pacu Pesca",

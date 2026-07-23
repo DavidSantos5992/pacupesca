@@ -30,7 +30,7 @@ import { getGoogleReviews } from "@/lib/google-reviews";
 
 export const revalidate = 3600;
 
-const siteUrl = "https://pacupesca.com";
+const siteUrl = "https://www.pacupesca.com";
 const landingPath = "/loja-de-pesca-varzea-paulista";
 const landingUrl = `${siteUrl}${landingPath}`;
 const whatsappNumber = "5511933973588";
@@ -38,7 +38,7 @@ const whatsappText = encodeURIComponent(
   "Ola, vim pelo site da Pacu Pesca e quero ajuda para montar minha pescaria.",
 );
 const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappText}`;
-const catalogUrl = "https://pacupesca.com/produtos/";
+const catalogUrl = "https://www.pacupesca.com/produtos/";
 const heroImage = "/images/banners/frente-loja-pacu-pesca-hero-v2.png";
 const address = "Rua Embu, 305 - Jardim Mirante, Várzea Paulista - SP";
 const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
