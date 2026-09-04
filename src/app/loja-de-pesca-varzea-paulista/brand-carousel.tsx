@@ -4,37 +4,38 @@ import Image from "next/image";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import type { MouseEvent, PointerEvent } from "react";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { storeLinks } from "./store-links";
 
 const brands = [
   {
     name: "Lori Fishing",
     image: "/images/brands/lori-fishing.svg",
-    href: "/produtos/substituir-link-marca-lori-fishing",
+    href: storeLinks.catalog,
   },
   {
     name: "KV",
     image: "/images/brands/kv.png",
-    href: "/produtos/substituir-link-marca-kv",
+    href: storeLinks.catalog,
   },
   {
     name: "Megabass",
     image: "/images/brands/megabass.svg",
-    href: "/produtos/substituir-link-marca-megabass",
+    href: storeLinks.catalog,
   },
   {
     name: "Daiwa",
     image: "/images/brands/daiwa.png",
-    href: "/produtos/substituir-link-marca-daiwa",
+    href: storeLinks.catalog,
   },
   {
     name: "Saint",
     image: "/images/brands/saint.png",
-    href: "/produtos/substituir-link-marca-saint",
+    href: storeLinks.catalog,
   },
   {
     name: "Extreme Jigs",
     image: "/images/brands/extreme-jigs.png",
-    href: "/produtos/substituir-link-marca-extreme-jigs",
+    href: storeLinks.catalog,
   },
 ];
 
@@ -159,7 +160,7 @@ export function BrandCarousel() {
           Marcas mais procuradas
         </h2>
         <a
-          href="/produtos/substituir-link-todas-as-marcas"
+          href={storeLinks.catalog}
           className="focus-ring inline-flex items-center gap-2 rounded-card border border-white/10 bg-white/8 px-4 py-2 text-sm font-black uppercase text-lime transition hover:border-lime/70 hover:bg-lime hover:text-charcoal"
         >
           veja mais marcas

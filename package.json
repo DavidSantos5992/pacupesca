@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "WRANGLER_LOG_PATH=.wrangler/wrangler.log vinext build",
     "start": "WRANGLER_LOG_PATH=.wrangler/wrangler.log vinext start",
-    "lint": "eslint . --ignore-pattern dist --ignore-pattern .next --ignore-pattern .wrangler"
+    "lint": "eslint . --ignore-pattern dist --ignore-pattern .next --ignore-pattern .wrangler",
+    "test:links": "node scripts/check-landing-links.mjs"
   },
   "dependencies": {
     "lucide-react": "^0.475.0",

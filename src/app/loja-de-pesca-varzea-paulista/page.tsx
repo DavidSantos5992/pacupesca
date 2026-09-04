@@ -15,7 +15,6 @@ import {
   PawPrint,
   Phone,
   ShieldCheck,
-  Shirt,
   Sparkles,
   Tent,
   X,
@@ -26,6 +25,7 @@ import { HeroCarousel } from "./hero-carousel";
 import { ProductFinderCarousel } from "./product-finder-carousel";
 import { Reveal } from "./reveal";
 import { ReviewsSection } from "./reviews-section";
+import { storeLinks } from "./store-links";
 import { getGoogleReviews } from "@/lib/google-reviews";
 
 export const revalidate = 3600;
@@ -38,7 +38,7 @@ const whatsappText = encodeURIComponent(
   "Ola, vim pelo site da Pacu Pesca e quero ajuda para montar minha pescaria.",
 );
 const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappText}`;
-const catalogUrl = "https://www.pacupesca.com/produtos/";
+const catalogUrl = storeLinks.catalog;
 const heroImage = "/images/banners/frente-loja-pacu-pesca-hero-v2.png";
 const address = "Rua Embu, 305 - Jardim Mirante, Várzea Paulista - SP";
 const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
@@ -130,57 +130,52 @@ const headerCategories: HeaderCategory[] = [
   {
     icon: Fish,
     label: 'Kits de Pesca',
-    href: `${catalogUrl}#categoria-kits`,
+    href: storeLinks.rods,
   },
   {
     icon: Sparkles,
     label: "Iscas Artificiais",
-    href: `${catalogUrl}#categoria-iscas-artificiais`,
+    href: storeLinks.lures,
   },
   {
     icon: BadgeCheck,
     label: "Carretilhas",
-    href: `${catalogUrl}#categoria-carretilhas`,
+    href: storeLinks.reels,
   },
   {
     icon: CircleDot,
     label: "Molinetes",
-    href: `${catalogUrl}#categoria-molinetes`,
+    href: storeLinks.spinningReels,
   },
   {
     icon: Package,
     label: "Linhas",
-    href: `${catalogUrl}#categoria-linhas`,
+    href: storeLinks.lines,
   },
   {
     icon: Anchor,
     label: "Anzóis",
-    href: `${catalogUrl}#categoria-anzois`,
+    href: storeLinks.hooks,
   },
   {
     icon: Boxes,
     label: "Acessórios",
-    href: `${catalogUrl}#categoria-acessorios`,
+    href: storeLinks.accessories,
   },
   {
     icon: Fish,
     label: "Varas",
-    href: `${catalogUrl}#categoria-varas`,
-  },
-  {
-    icon: Shirt,
-    label: "Vestuário",
-    href: `${catalogUrl}#categoria-vestuario`,
+    href: storeLinks.rods,
   },
   {
     icon: Tent,
     label: "Camping",
-    href: `${catalogUrl}#categoria-camping`,
+    href: storeLinks.catalog,
   },
   {
     icon: PawPrint,
     label: "Linha Pet",
-    href: `${catalogUrl}#categoria-linha-pet`,
+    href: storeLinks.pet,
   },
 ];
 
@@ -190,35 +185,35 @@ const categories: Category[] = [
     description:
       "Opções para pesqueiro, praia, lazer e diferentes estilos de arremesso.",
     image: "/images/categories/sem-ver-mais/varas.png",
-    href: `${catalogUrl}#categoria-varas`,
+    href: storeLinks.rods,
   },
   {
     name: "Anzóis",
     description:
       "Modelos para reposição, montagem de linhas e preparação da fisgada.",
     image: "/images/categories/sem-ver-mais/anzois.png",
-    href: `${catalogUrl}#categoria-anzois`,
+    href: storeLinks.hooks,
   },
   {
     name: "Linhas",
     description:
       "Itens essenciais para montar conjuntos firmes, equilibrados e confiáveis.",
     image: "/images/categories/sem-ver-mais/linhas.png",
-    href: `${catalogUrl}#categoria-linhas`,
+    href: storeLinks.lines,
   },
   {
     name: "Molinetes",
     description:
       "Equipamentos para quem busca praticidade, controle e bons arremessos.",
     image: "/images/categories/sem-ver-mais/molinetes.png",
-    href: `${catalogUrl}#categoria-molinetes`,
+    href: storeLinks.spinningReels,
   },
   {
     name: "Carretilhas",
     description:
       "Peças para pescadores que gostam de precisão e performance na mão.",
     image: "/images/categories/sem-ver-mais/carretilhas.png",
-    href: `${catalogUrl}#categoria-carretilhas`,
+    href: storeLinks.reels,
   },
 ];
 
@@ -226,42 +221,42 @@ const products: Product[] = [
   {
     name: "Vara Telescópica 88% Carbono",
     image: "/images/products/vara-telescopica-carbono.webp",
-    href: "/produtos/substituir-link-vara-telescopica-carbono",
+    href: storeLinks.rods,
   },
   {
     name: "Vara Pesca Praia Costão GT",
     image: "/images/products/vara-pesca-praia-costao-gt.webp",
-    href: "/produtos/substituir-link-vara-pesca-praia-costao-gt",
+    href: storeLinks.rods,
   },
   {
     name: "Linha Marine Vexter Ultimate",
     image: "/images/products/linha-marine-vexter.webp",
-    href: "/produtos/substituir-link-linha-marine-vexter-ultimate",
+    href: storeLinks.lines,
   },
   {
     name: "Isca Artificial Lori",
     image: "/images/products/isca-artificial-lori.webp",
-    href: "/produtos/substituir-link-isca-artificial-lori",
+    href: storeLinks.lures,
   },
   {
     name: "Anzol Kawasemi",
     image: "/images/products/anzol-kawasemi.webp",
-    href: "/produtos/substituir-link-anzol-kawasemi",
+    href: storeLinks.hooks,
   },
   {
     name: "Suporte para Varas",
     image: "/images/products/suporte-para-varas.webp",
-    href: "/produtos/substituir-link-suporte-para-varas",
+    href: storeLinks.accessories,
   },
   {
     name: "Rede Samburá de Pesca",
     image: "/images/products/rede-sambura-pesca.webp",
-    href: "/produtos/substituir-link-rede-sambura-pesca",
+    href: storeLinks.accessories,
   },
   {
     name: "Ração Bio Truta Premium",
     image: "/images/products/racao-bio-truta.webp",
-    href: "/produtos/substituir-link-racao-bio-truta-premium",
+    href: storeLinks.pet,
   },
 ];
 
@@ -540,7 +535,7 @@ export default async function BrandLandingPage() {
         <HeroCarousel />
 
         <section className="surface-line border-y border-white/10 bg-graphite-soft py-20">
-          <Reveal className="section-shell">
+          <div className="section-shell">
             <div className="mb-10 flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
               <div className="max-w-3xl">
                 <p className="mb-3 inline-flex rounded-card border border-water/35 bg-water/10 px-3 py-1 text-xs font-black uppercase tracking-wide text-water">
@@ -560,7 +555,7 @@ export default async function BrandLandingPage() {
             </div>
 
             <ProductFinderCarousel />
-          </Reveal>
+          </div>
         </section>
 
         <Reveal id="produtos" as="section" className="section-shell py-20">

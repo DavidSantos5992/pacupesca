@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { useEffect, useRef, useState, type PointerEvent } from "react";
+import { storeLinks } from "./store-links";
 
 type HeroSlide = {
   title: string;
@@ -142,7 +143,7 @@ export function HeroCarousel() {
     <section
       aria-label="Destaques Pacu Pesca"
       aria-roledescription="carousel"
-      className="relative isolate touch-pan-y overflow-hidden bg-charcoal pt-20 md:pt-28"
+      className="relative isolate touch-pan-y overflow-hidden bg-charcoal pt-20 md:pt-[84px]"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
       onFocus={() => setIsPaused(true)}
@@ -161,7 +162,7 @@ export function HeroCarousel() {
       <div className="absolute -right-44 top-8 -z-10 h-[34rem] w-[34rem] rounded-full border border-white/8 bg-white/[0.02] shadow-[0_0_120px_rgba(0,159,227,0.12)]" />
       <div className="absolute -right-20 top-32 -z-10 h-[25rem] w-[25rem] rounded-full border border-white/8" />
 
-      <div className="relative aspect-[1697/927] w-full">
+      <div className="relative aspect-[1697/927] w-full md:aspect-auto md:h-[calc(100svh-13.25rem)] md:min-h-[32rem]">
         {slides.map((item, index) => (
           <div
             key={item.title}
@@ -176,7 +177,7 @@ export function HeroCarousel() {
               fill
               priority={index === 0}
               sizes="100vw"
-              className="object-cover"
+              className="object-contain"
             />
             <div className="absolute inset-0 bg-black/10" />
             <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(5,6,7,0.62),transparent_32%)]" />
@@ -198,7 +199,7 @@ export function HeroCarousel() {
               />
             </a>
             <a
-              href="https://www.pacupesca.com/produtos/"
+              href={storeLinks.catalog}
               className="focus-ring inline-flex min-h-10 items-center justify-center gap-1.5 rounded-card border border-white/15 bg-white/8 px-3 py-2 text-[11px] font-extrabold uppercase text-paper transition duration-300 hover:-translate-y-0.5 hover:border-white/35 hover:bg-white/12 md:min-h-12 md:gap-2 md:px-5 md:py-3 md:text-sm"
             >
               Ver produtos
